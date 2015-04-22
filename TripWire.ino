@@ -4,7 +4,7 @@
 #define LCD_DC A0
 #define LCD_CE A1
 #define LCD_RST 10
-#define LCD_BL 20
+#define LCD_BL A2
 #define LCD_TIMEOUT 3000
 
 #include <SPI.h>
