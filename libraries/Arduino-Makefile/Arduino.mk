@@ -1486,13 +1486,17 @@ show_boards:
 		@$(CAT) $(BOARDS_TXT) | grep -E '^[a-zA-Z0-9_]+.name' | sort -uf | sed 's/.name=/:/' | column -s: -t
 
 monitor:
-ifneq ($(MONITOR_CMD), 'putty')
-	$(MONITOR_CMD) $(call get_monitor_port) $(MONITOR_BAUDRATE)
-else
+ifeq ($(MONITOR_CMD), 'putty')
     ifneq ($(strip $(MONITOR_PARMS)),)
-		$(MONITOR_CMD) -serial -sercfg $(MONITOR_BAUDRATE),$(MONITOR_PARMS) $(call get_monitor_port)
+        $(MONITOR_CMD) -serial -sercfg $(MONITOR_BAUDRATE),$(MONITOR_PARMS) $(call get_monitor_port)
     else
-		$(MONITOR_CMD) -serial -sercfg $(MONITOR_BAUDRATE) $(call get_monitor_port)
+        $(MONITOR_CMD) -serial -sercfg $(MONITOR_BAUDRATE) $(call get_monitor_port)
+    endif
+else
+    ifeq ($(MONITOR_CMD), 'picocom')
+		$(MONITOR_CMD) -b $(MONITOR_BAUDRATE) $(call get_monitor_port) $(MONITOR_PARMS)
+    else
+		$(MONITOR_CMD) $(call get_monitor_port) $(MONITOR_BAUDRATE)
     endif
 endif
 
