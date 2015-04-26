@@ -7,6 +7,9 @@
 #define LCD_BL A2
 #define LCD_TIMEOUT 3000
 
+// Indicator LED to use when aligning the laser
+#define INDICATOR 9
+
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_PCD8544.h>
@@ -47,7 +50,7 @@ void setupDisplay()
 {
   display.begin();
   display.setContrast(50);
-  display.setTextSize(5);
+  display.setTextSize(4);
   display.setTextColor(BLACK);
   display.clearDisplay();
   updateDisplay();
@@ -56,6 +59,7 @@ void setupDisplay()
 void setup()
 {
   pinMode(LCD_BL, OUTPUT);
+  pinMode(INDICATOR, OUTPUT);
   pinMode(SENSOR_PIN, INPUT);
   setupDisplay();
   attachInterrupt(SENSOR_INTERRUPT, incrementCounter, FALLING);
@@ -71,4 +75,6 @@ void loop()
     lastCount = count;
     updateDisplay();
   }
+
+  digitalWrite(INDICATOR, !digitalRead(SENSOR_PIN));
 }

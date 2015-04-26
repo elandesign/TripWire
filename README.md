@@ -1,6 +1,6 @@
 ## TripWire
 
-An Arduino sketch to count the number of times an IR tripwire is broken and display the count on an LCD screen.
+An Arduino sketch to count the number of times a laser tripwire is broken and display the count on an LCD screen.
 
 ## Wiring Diagram
 
@@ -11,9 +11,9 @@ An Arduino sketch to count the number of times an IR tripwire is broken and disp
 The build will consist of
 
 * [Sparkfun Pro Micro](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/hardware-overview-pro-micro) clone
-* TEFD4300F [IR Photodiode + Darlington pair](http://www.instructables.com/id/Infrared-IR-tripwire-module/step2/How-it-works/)
+* [LED (in reverse bias) + Darlington pair](http://www.instructables.com/id/Infrared-IR-tripwire-module/step2/How-it-works/)
 * Nokia 5110 type LCD screen (to display the trip count)
-* TSUS5202 IR LED (to provide the IR beam)
+* [5V Laser Diode](http://www.ebay.co.uk/itm/2-x-5v-650nm-Red-Laser-Diode-/271822463307?pt=LH_DefaultDomain_3&hash=item3f49e1a14b)
 
 ## Requirements
 
